@@ -1,0 +1,12 @@
+# https://developer.ibm.com/technologies/java/tutorials/mq-jms-application-development-with-spring-boot/
+# A default queue is created in the container called DEV.QUEUE.1
+version: '2'
+services:
+  ibmmq:
+    image: ibmcom/mq
+    environment:
+      - LICENSE=accept
+      - MQ_QMGR_NAME=QM1
+    ports:
+      - 1414:1414
+      - 9444:9444

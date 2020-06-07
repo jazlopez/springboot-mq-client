@@ -1,0 +1,6 @@
+version: '2'
+services:
+  ibmmq:
+    extends:
+      service: ibmmq
+      file: mq.yml
