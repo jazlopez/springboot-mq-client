@@ -70,5 +70,6 @@ curl -X POST http://localhost:8080 -d "payload=demopayload"
 
 1.0.0 Initial with limited support
       Enqueue message only. Not fetch/ delete queued messages
+      Endpoint to enqueue message accept multipart/form data
       
 
