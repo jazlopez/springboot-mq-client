@@ -53,13 +53,9 @@ While the application is running you can submit payloads and will be enqueued in
 
 ```
 # example
-curl -X POST http://localhost:8080 -d "payload=demopayload"
+# publish a file (content) to queue
+curl -v -X POST http://localhost:18888 -F file=@yourfile
 
-# 2020-06-07 16:15:44.548  INFO 27434 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-# 2020-06-07 16:15:44.548  INFO 27434 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-# 2020-06-07 16:15:44.552  INFO 27434 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-# 2020-06-07 16:15:44.568  INFO 27434 --- [nio-8080-exec-1] o.jlopezmx.mq.client.ClientApplication   : Received payload: demopayload
-# Enqueue payload: demopayload%
 ```
 
 ### CONTRIBUTOR
