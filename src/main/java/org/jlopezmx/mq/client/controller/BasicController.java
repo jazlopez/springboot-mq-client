@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.JmsException;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.jms.Message;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
@@ -26,10 +30,10 @@ public class BasicController {
     @Value("${ibm.mq.channel}")
     String channel;
 
-    @Value("{ibm.mq.connName}")
+    @Value("${ibm.mq.connName}")
     String connection;
 
-    @Value("{ibm.mq.user}")
+    @Value("${ibm.mq.user}")
     String user;
 
     @Value("${ibm.mq.password}")
@@ -107,24 +111,45 @@ public class BasicController {
 
     }
 
-    @GetMapping("config")
-    String config(){
+    @RequestMapping(value = "/config")
+    ModelAndView config(Model model){
+
+        Map<String, String> properties = new HashMap<>();
+
+        properties.put("queue.manager", queueManager);
+        properties.put("queue.channel", channel);
+        properties.put("queue.connection.name", connection);
+        properties.put("queue.user", user);
+        properties.put("queue.password", password);
+        properties.put("queue.name", queue);
+
+        LOG.info(properties.toString());
 
         LOG.info(String.format("INFORMATION ABOUT QUEUE: %s", queue));
 
-        return String
-                .format("Queue manager: %s <br/>" +
-                        "Queue channel: %s <br/>" +
-                        "Queue connection name: %s <br/>" +
-                        "Queue user: %s <br/>" +
-                        "Queue password: %s <br/>" +
-                        "Queue name: %s <br/>" ,
-                    queueManager,
-                    channel,
-                    connection,
-                    user,
-                    password,
-                    queue);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("config");
+        modelAndView.addObject("properties",properties);
+
+
+        return modelAndView;
+
+
+
+
+//        return String
+//                .format("Queue manager: %s <br/>" +
+//                        "Queue channel: %s <br/>" +
+//                        "Queue connection name: %s <br/>" +
+//                        "Queue user: %s <br/>" +
+//                        "Queue password: %s <br/>" +
+//                        "Queue name: %s <br/>" ,
+//                    queueManager,
+//                    channel,
+//                    connection,
+//                    user,
+//                    password,
+//                    queue);
     }
 
 

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>SPRINGBOOT MQ CLIENT</title>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>SPRINGBOOT-MQ-CLIENT</h1>
+        <h2>Client Properties</h2>
+    </div>
+
+    <ol>
+        <li th:each="property : ${properties}">
+            <span th:text="${property.key} + ':'+ ${property.value}"></span>
+        </li>
+    </ol>
+</main>
+<!-- /.container -->
+</body>
+</html>
