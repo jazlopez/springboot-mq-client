@@ -1,5 +1,7 @@
 # springboot-mq-client
-springboot-mq-client
+springboot-mq-client: simple Java implementation of a client to connect to IBM Message Queue service. Enqueue messages via exposed simple API.
+
+
 
 ### ABSTRACT
 
